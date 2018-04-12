@@ -1,0 +1,11 @@
+var express = require('express');
+var router = express.Router();
+
+router.get('/', function(req, res){
+  res.json({
+    message : 'Hello, Food and Stuff is open !',
+    status : 'ok'
+  });
+});
+
+module.exports = router;
