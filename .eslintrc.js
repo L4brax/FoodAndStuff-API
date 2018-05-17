@@ -1,14 +1,12 @@
 module.exports = {
     "env": {
         "es6": true,
-        "node": true,
-        "mocha": true
+        "node": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
         "sourceType": "module"
     },
-    "plugins": ["mocha"],
     "rules": {
         "indent": [
             "error",
