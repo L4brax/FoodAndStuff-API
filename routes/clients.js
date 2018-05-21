@@ -1,13 +1,17 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var Client = require('.././models/Client');
+const Client = require('.././models/Client');
 
 // Find a client by id
-router.get('/', function (req, res) {
-  Client.find({ email: req.body.email }, function(err, client) {
+router.get('/:email', function (req, res) {
+  Client.findOne({ email: req.params.email }, function(err, client) {
     if (err) res.send(err);
-    res.send(client);
+    if (client.active){ 
+      res.send(client);
+    } else {
+      res.status(400).send('Ressource not found.');
+    }
   });
 });
 
@@ -17,7 +21,7 @@ router.put('/', function (req, res){
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     password: req.body.password,
-    email: req.body.email 
+    email: req.body.email
   });
 
   newClient.save(function(err, client) {

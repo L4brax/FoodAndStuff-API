@@ -1,13 +1,17 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var Deliveryman = require('.././models/Deliveryman');
+const Deliveryman = require('.././models/Deliveryman');
 
 // Fin a deliveryman by id
-router.get('/', function (req, res) {
-  Deliveryman.find({ email: req.body.email }, function(err, deliveryMan) {
+router.get('/:email', function (req, res) {
+  Deliveryman.findOne({ email: req.params.email }, function(err, deliveryMan) {
     if (err) res.send(err);
-    res.send(deliveryMan);
+    if (deliveryMan.active){
+      res.send(deliveryMan);
+    } else {
+      res.status(400).send('Ressource not found.');
+    }
   });
 });
 

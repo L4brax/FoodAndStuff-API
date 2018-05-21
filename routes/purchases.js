@@ -1,11 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var Purchase = require('.././models/Purchase');
+const Purchase = require('.././models/Purchase');
 
 // Find an producer by id
-router.get('/', function (req, res) {
-  Purchase.find({ _id: req.body._id }, function(err, purchase) {
+router.get('/:_id', function (req, res) {
+  Purchase.findOne({ _id: req.body._id }, function(err, purchase) {
     if (err) res.send(err);
     res.send(purchase);
   });

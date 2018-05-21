@@ -15,6 +15,12 @@ var clientSchema = new Schema({
   active: Boolean
 });
 
+clientSchema.methods.comparePassword = function(pwd){
+  if ('string' == typeof pwd && this.password == pwd) 
+    return true;
+  return false;
+};
+
 // On every save :
 clientSchema.pre('save', function(next) {
   // get the current date
@@ -24,8 +30,10 @@ clientSchema.pre('save', function(next) {
   this.updated_at = currentDate;
 
   // if created_at doesn't exist, add to that field
-  if (!this.created_at)
+  if (!this.created_at) {
     this.created_at = currentDate;
+    this.active = true;
+  }
 
   next();
 });

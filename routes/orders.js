@@ -1,11 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var Order = require('.././models/Order');
+const Order = require('.././models/Order');
 
 // Fin n ordern by id
-router.get('/', function (req, res) {
-  Order.find({ _id: req.body._id }, function(err, order) {
+router.get('/:_id', function (req, res) {
+  Order.findOne({ _id: req.params._id }, function(err, order) {
     if (err) res.send(err);
     res.send(order);
   });
