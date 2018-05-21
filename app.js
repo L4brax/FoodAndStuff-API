@@ -32,7 +32,6 @@ app.use(function(req, res, next){
     req.user = undefined;
     next();
   }
-  console.log(req.user);
 });
 
 //Using routes

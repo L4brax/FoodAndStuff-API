@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Client = require('.././models/Client');
+const loginRequired = require('.././middleware/authentication').loginRequired;
 
 // Find a client by id
 router.get('/:email', function (req, res) {
@@ -39,7 +40,8 @@ router.delete('/', function (req, res){
 });
 
 // Update a Client
-router.post('/', function (req, res){
+router.post('/', loginRequired, function (req, res){
+  console.log(req.body);
   var updatedClient = {
     address: req.body.address,
     first_name: req.body.first_name,
