@@ -19,6 +19,7 @@ var orders = require('./routes/orders');
 var purchases = require('./routes/purchases');
 var login = require('./routes/login');
 var register = require('./routes/register');
+var product = require('./routes/product');
 
 // Verifying JWT and initiate req.user for protected routes if token is verified.
 app.use(function(req, res, next){
@@ -42,6 +43,7 @@ app.use('/orders', orders);
 app.use('/purchases', purchases);
 app.use('/login', login);
 app.use('/register', register);
+app.use('/product', product);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
