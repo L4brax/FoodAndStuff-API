@@ -2,6 +2,7 @@ const express = require('express');
 const bp = require('body-parser');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
 mongoose.connect('mongodb://userFS:ynovnantes18@35.178.103.130:23992/foodandstuff'); // connect to our database
 
 const app = express();
@@ -10,6 +11,7 @@ const port = 80;
 // Using Body parser to parse the request.
 // Request Data will be stored in req.body
 app.use(bp.json());
+app.use(cors());
 
 // Retreiving routes
 var ping = require('./routes/ping');
