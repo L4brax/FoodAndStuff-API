@@ -18,6 +18,29 @@ router.get('/id/:product_id', function (req, res) {
   });
 });
 
+// Find each category
+router.get('/category/list', function(req, res){
+  Product.distinct('categorie_id').exec(function(err, categories){
+    if (err) res.send(err);
+    res.send(categories);
+  });
+});
+// router.get('/category/list', function(req, res){
+//   Product.distinct('categorie_id').exec(function(err, categories){
+//     if (err) res.send(err);
+//     let catReturnedPromised = categories.map(function(category) {
+//       let productRet = {category:category};
+//       return new Promise(function(resolve){
+//         Product.findOne({categorie_id:category}, 'photo_url',function(err, product){
+//           productRet.image_url = product.photo_url;
+//           resolve(productRet);
+//         });
+//       });
+//     });
+//     Promise.all(catReturnedPromised).then(res.send);    
+//   });
+// });
+
 //Find products by category
 router.get('/category/:category', function(req, res){
   Product.find({categorie_id:parseInt(req.params.category)}).exec(function(err, products){
