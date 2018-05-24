@@ -20,7 +20,7 @@ router.get('/id/:product_id', function (req, res) {
 
 // Find each category
 router.get('/category/list', function(req, res){
-  Product.distinct('categorie_id').exec(function(err, categories){
+  Product.distinct('categorie').exec(function(err, categories){
     if (err) res.send(err);
     res.send(categories);
   });
@@ -43,7 +43,7 @@ router.get('/category/list', function(req, res){
 
 //Find products by category
 router.get('/category/:category', function(req, res){
-  Product.find({categorie_id:parseInt(req.params.category)}).exec(function(err, products){
+  Product.find({categorie:req.params.category}).exec(function(err, products){
     if (err) res.send(err);
     res.send(products);
   });
