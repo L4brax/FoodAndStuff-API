@@ -18,6 +18,15 @@ router.get('/id/:product_id', function (req, res) {
   });
 });
 
+//Find products by category
+router.get('/category/:category', function(req, res){
+  console.log(parseInt(req.params.category));
+  Product.find({categorie_id:parseInt(req.params.category)}).exec(function(err, products){
+    if (err) res.send(err);
+    res.send(products);
+  });
+});
+
 // Find all product
 router.get('/list', function(req, res) {
   Product.find({ }, function(err, product) {

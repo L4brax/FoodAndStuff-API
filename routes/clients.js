@@ -41,7 +41,6 @@ router.delete('/', function (req, res){
 
 // Update a Client
 router.post('/', loginRequired, function (req, res){
-  console.log(req.body);
   var updatedClient = {
     address: req.body.address,
     first_name: req.body.first_name,

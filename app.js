@@ -48,10 +48,10 @@ app.use('/register', register);
 app.use('/product', product);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function(req, res) {
   var err = new Error('Not Found, the url requested doesn\'t exist !');
   err.status = 404;
-  next(err);
+  res.send(err);
 });
 
 app.listen(port, function () {
