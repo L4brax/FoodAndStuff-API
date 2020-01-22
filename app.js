@@ -3,7 +3,7 @@ const bp = require('body-parser');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-mongoose.connect('mongodb://userFS:ynovnantes18@35.178.103.130:23992/foodandstuff'); // connect to our database
+mongoose.connect(''); // connect to our database
 
 const app = express();
 const port = 80;
